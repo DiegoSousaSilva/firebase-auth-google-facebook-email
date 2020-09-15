@@ -28,6 +28,7 @@ class App extends React.Component {
 
     firebase.auth().onAuthStateChanged(user => {
       this.setState({isSignedIn:!!user})
+      console.log("user", user)
     })
     
   }
@@ -39,6 +40,11 @@ class App extends React.Component {
           <span> 
             <div>Signed In!</div>
             <button onClick={()=> firebase.auth().signOut()}>Sign out</button>
+            <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+            <img 
+              alt='profile picture'
+              src={firebase.auth().currentUser.photoURL}
+            />
           </span>
           :
           <StyledFirebaseAuth
